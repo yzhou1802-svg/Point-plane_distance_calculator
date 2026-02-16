@@ -1,10 +1,11 @@
+import math
 
 def get_point(point_name):
     """获取一个三维点的坐标"""
     print(f"please enter the coordinates of{point_name}:")
-    x = int(input('first number: '))
-    y = int(input('second number: '))
-    z = int(input('third number: '))
+    x = float(input('first number: '))
+    y = float(input('second number: '))
+    z = float(input('third number: '))
     point = [x, y, z]
     print(f'{point_name} is= ({x}, {y}, {z})')
     return point
@@ -45,14 +46,14 @@ print(f"{a}*x+{b}*y+{c}*z={d}")
 #Gradegleichung以及在Parameterform中每个点的表达形式
 p=ebenepunkt1
 n=cross_product
-print('Degree equation(vector form):')
+print('line equation(vector form):')
 print(f'x(k)=({p[0]}, {p[1]}, {p[2]}) + k*({n[0]}, {n[1]}, {n[2]})')
 
-print("\nParameter form of the plane:")
+print("\nParameter form of the plane for x,y and z:")
 print(f"x(k) = {p[0]} + k*{n[0]}")
 print(f"y(k) = {p[1]} + k*{n[1]}")
 print(f"z(k) = {p[2]} + k*{n[2]}")
-#把每一个表达式再带回到Koordinatenform里求变量k
+#把每一个表达式再带回到Coordinate form里求变量k
 n=cross_product
 p=ebenepunkt1
 num = d - (a * p[0] + b * p[1] + c * p[2])
@@ -73,10 +74,11 @@ else:
     k = num / den
     intersection = [p[i] + k * n[i] for i in range(3)]
     vector_geb_to_intersection = [intersection[i] - geb_punkt1[i] for i in range(3)]
+    f_vector_geb_to_intersection = list(map(float, vector_geb_to_intersection))
 print("The Vector from P4 to the intersection =", tuple(vector_geb_to_intersection))
 
-x1, y1, z1 = vector_geb_to_intersection
-distanc_intersection_to_gebpumkt1=((x1)**2 + (y1)**2 + (z1)**2)**0.5
-print('The distance between intersection and the plane:', distanc_intersection_to_gebpumkt1)
+x1, y1, z1 = f_vector_geb_to_intersection
+distance_intersection_to_gebpunkt1=math.exp(0.5* math.log(x1**2.0+y1**2.0+z1**2.0))
+print(f'The distance between intersection and the plane:',round(distance_intersection_to_gebpunkt1))
 
 
